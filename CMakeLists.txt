@@ -5,6 +5,8 @@ set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake ${CMAKE_MODULE_PATH})
 
 include(ExternalProject)
 
+set(install_dir "vtk")
+
 ExternalProject_add(VMTK
     GIT_REPOSITORY "https://github.com/vmtk/vmtk.git"
     GIT_TAG "v1.4.0"
@@ -15,6 +17,20 @@ ExternalProject_add(VMTK
     USES_TERMINAL_CONFIGURE 1
     USES_TERMINAL_BUILD 1
     INSTALL_COMMAND ""
+    CMAKE_ARGS
+        -DCMAKE_INSTALL_PREFIX:PATH=${CMAKE_INSTALL_PREFIX}
+        -DCMAKE_INSTALL_RPATH=${install_dir}
 )
 
-install(SCRIPT ${CMAKE_BINARY_DIR}/VMTK-build/cmake_install.cmake)
+
+ExternalProject_add(${PROJECT_NAME}
+    SOURCE_DIR ${CMAKE_SOURCE_DIR}
+    BINARY_DIR ${CMAKE_BINARY_DIR}/${PROJECT_NAME}-build
+    DOWNLOAD_COMMAND ""
+    UPDATE_COMMAND ""
+    USES_TERMINAL_CONFIGURE 1
+    INSTALL_COMMAND ""
+    DEPENDS VMTK
+)
+
+install(SCRIPT ${CMAKE_BINARY_DIR}/${PROJECT_NAME}-build/cmake_install.cmake)
