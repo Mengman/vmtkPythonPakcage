@@ -20,6 +20,8 @@ ExternalProject_add(VMTK
     CMAKE_ARGS
         -DCMAKE_INSTALL_PREFIX:PATH=${CMAKE_INSTALL_PREFIX}
         -DCMAKE_INSTALL_RPATH=${install_dir}
+        -DVMTK_INSTALL_LIB_DIR=${CMAKE_INSTALL_PREFIX}/${install_dir}
+        -DVMTK_MODULE_INSTALL_LIB_DIR=${CMAKE_INSTALL_PREFIX}/${install_dir}
 )
 
 
