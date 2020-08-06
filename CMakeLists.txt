@@ -16,3 +16,5 @@ ExternalProject_add(VMTK
     USES_TERMINAL_BUILD 1
     INSTALL_COMMAND ""
 )
+
+install(SCRIPT ${CMAKE_BINARY_DIR}/VMTK-build/cmake_install.cmake)
