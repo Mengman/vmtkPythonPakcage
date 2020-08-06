@@ -5,7 +5,7 @@ set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake ${CMAKE_MODULE_PATH})
 
 include(ExternalProject)
 
-set(install_dir "vtk")
+set(install_dir "vmtk")
 
 ExternalProject_add(VMTK
     GIT_REPOSITORY "https://github.com/vmtk/vmtk.git"
