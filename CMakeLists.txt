@@ -8,8 +8,8 @@ include(ExternalProject)
 set(install_dir "vmtk")
 
 ExternalProject_add(VMTK
-    GIT_REPOSITORY "https://github.com/vmtk/vmtk.git"
-    GIT_TAG "v1.4.0"
+    GIT_REPOSITORY "https://github.com/Mengman/vmtk.git"
+    GIT_TAG "origin/v1.4.1"
     SOURCE_DIR "${CMAKE_BINARY_DIR}/VMTK"
     BINARY_DIR "${CMAKE_BINARY_DIR}/VMTK-build"
     USES_TERMINAL_DOWNLOAD 1
