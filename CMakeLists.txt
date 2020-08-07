@@ -37,6 +37,7 @@ if (vmtkPythonPackage_SUPERBUILD)
         BINARY_DIR ${CMAKE_BINARY_DIR}/${PROJECT_NAME}-build
         CMAKE_CACHE_ARGS:
             -DCMAKE_INSTALL_PREFIX:PATH=${CMAKE_INSTALL_PREFIX}
+            -DvmtkPythonPackage_SUPERBUILD:BOOL=0
         DOWNLOAD_COMMAND ""
         UPDATE_COMMAND ""
         USES_TERMINAL_CONFIGURE 1
@@ -46,4 +47,4 @@ if (vmtkPythonPackage_SUPERBUILD)
 
     install(SCRIPT ${CMAKE_BINARY_DIR}/${PROJECT_NAME}-build/cmake_install.cmake)
 
-elseif()
+endif()
