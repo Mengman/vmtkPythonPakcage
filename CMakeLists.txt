@@ -19,18 +19,7 @@ ExternalProject_add(VMTK
     USES_TERMINAL_BUILD 1
     INSTALL_COMMAND ""
     CMAKE_ARGS
-        -DCMAKE_INSTALL_PREFIX:PATH=${CMAKE_INSTALL_PREFIX}
-        -DCMAKE_INSTALL_RPATH=${install_dir}
-        -DVMTK_INSTALL_LIB_DIR=${install_dir}
-        -DVMTK_INSTALL_BIN_DIR=${install_bin}
-        -DVMTK_MODULE_INSTALL_LIB_DIR=${install_dir}
-        -DVTK_VMTK_INSTALL_LIB_DIR=${install_dir}
-        -DVTK_VMTK_MODULE_INSTALL_LIB_DIR=${install_dir}
-        -DVTK_VMTK_INSTALL_BIN_DIR=${install_bin}
-        -DVMTK_SCRIPTS_INSTALL_LIB_DIR=${install_dir}
-        -DVMTK_SCRIPTS_INSTALL_BIN_DIR=${install_bin}
-        -DPYPES_MODULE_INSTALL_LIB_DIR=${install_dir}
-        -DPYPES_INSTALL_BIN_DIR=${install_bin}
+        -DSUPERBUILD_INSTALL_PREFIX=${CMAKE_INSTALL_PREFIX}
 )
 
 
