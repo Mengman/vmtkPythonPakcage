@@ -70,7 +70,7 @@ if (vmtkPythonPackage_SUPERBUILD)
     ExternalProject_add(${PROJECT_NAME}
         SOURCE_DIR ${CMAKE_SOURCE_DIR}
         BINARY_DIR ${CMAKE_BINARY_DIR}/${PROJECT_NAME}-build
-        CMAKE_CACHE_ARGS:
+        CMAKE_CACHE_ARGS
             -DCMAKE_INSTALL_PREFIX:PATH=${CMAKE_INSTALL_PREFIX}
             -DvmtkPythonPackage_SUPERBUILD:BOOL=0
         DOWNLOAD_COMMAND ""
