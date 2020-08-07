@@ -99,12 +99,9 @@ if (vmtkPythonPackage_SUPERBUILD)
     install(SCRIPT ${CMAKE_BINARY_DIR}/${PROJECT_NAME}-build/cmake_install.cmake)
 else()
     set(components "PythonRuntimeLibraries;RuntimeExecutables")
-
     message(STATUS "Adding install rules for components:")
-
     foreach(component IN LISTS components)
         message(STATUS "  ${component}")
-
         install(CODE "
         unset(CMAKE_INSTALL_COMPONENT)
         set(COMPONENT \"${component}\")
@@ -114,5 +111,5 @@ else()
         ")
     endforeach()
 
-    install(CODE "include(\"${VMTK_BINARY_DIR}/cmake_install.cmake\")")
+    # install(CODE "include(\"${VMTK_BINARY_DIR}/cmake_install.cmake\")")
 endif()
