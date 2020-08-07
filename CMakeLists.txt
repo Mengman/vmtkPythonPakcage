@@ -59,7 +59,19 @@ if (vmtkPythonPackage_SUPERBUILD)
             -DPYTHON_EXECUTABLE=${PYTHON_EXECUTABLE}
             -DCMAKE_BUILD_WITH_INSTALL_RPATH=OFF
             -DPYTHON_LIBRARY=${PYTHON_LIBRARY}
-            -DCMAKE_INSTALL_RPATH=${CMAKE_INSTALL_PREFIX}/lib;@rpath
+            -DCMAKE_INSTALL_RPATH=${CMAKE_INSTALL_PREFIX};@rpath
+            
+            -DVMTK_SCRIPTS_INSTALL_LIB_DIR=${install_dir}
+            -DVMTK_SCRIPTS_INSTALL_BIN_DIR=${bin_dir}
+            
+            -DPYPES_MODULE_INSTALL_LIB_DIR=${install_dir}
+            -DPYPES_INSTALL_BIN_DIR=${bin_dir}
+
+            -DVTK_VMTK_INSTALL_LIB_DIR=${install_dir}
+            -DVTK_VMTK_MODULE_INSTALL_LIB_DIR=${install_dir}
+            -DVTK_VMTK_INSTALL_INCLUDE_DIR=${CMAKE_INSTALL_PREFIX}/include/vmtk
+            -DVTK_VMTK_INSTALL_BIN_DIR=${bin_dir}
+
             -DCMAKE_MACOSX_RPATH=ON
             -DCMAKE_INSTALL_RPATH_USE_LINK_PATH=TRUE
             -DCMAKE_PREFIX_PATH=/root/libs
@@ -73,6 +85,7 @@ if (vmtkPythonPackage_SUPERBUILD)
         CMAKE_CACHE_ARGS
             -DCMAKE_INSTALL_PREFIX:PATH=${CMAKE_INSTALL_PREFIX}
             -DvmtkPythonPackage_SUPERBUILD:BOOL=0
+            -DVMTK_BINARY_DIR:PATH=${CMAKE_BINARY_DIR}/VMTK-build
         DOWNLOAD_COMMAND ""
         UPDATE_COMMAND ""
         USES_TERMINAL_CONFIGURE 1
@@ -82,6 +95,5 @@ if (vmtkPythonPackage_SUPERBUILD)
 
     install(SCRIPT ${CMAKE_BINARY_DIR}/${PROJECT_NAME}-build/cmake_install.cmake)
 else()
-    install(CODE "include(\"${CMAKE_BINARY_DIR}/VMTK-build/cmake_install.cmake\")")
-
+    install(CODE "include(\"${DVMTK_BINARY_DIR}/cmake_install.cmake\")")
 endif()
