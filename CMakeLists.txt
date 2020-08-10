@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.12)
+cmake_minimum_required(VERSION 3.16)
 
 project(vmtkPythonPakcage)
 set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake ${CMAKE_MODULE_PATH})
@@ -9,6 +9,16 @@ endif()
 
 
 if (vmtkPythonPackage_SUPERBUILD)
+    # Skip git submodules update
+    cmake_policy(SET CMP0097 NEW)
+    option(VMTK_BUILD_TESTING "Build the VMTK testing libraries" OFF)
+    
+    if (VMTK_BUILD_TESTING)
+        set(VMTK_GIT_SUBMODULES "tests/vmtk-test-data")
+    else()
+        set(VMTK_GIT_SUBMODULES "")
+    endif()
+
     include(ExternalProject)
     set(install_dir "${CMAKE_INSTALL_PREFIX}/vmtk")
     set(bin_dir "${CMAKE_INSTALL_PREFIX}/bin")
@@ -16,6 +26,7 @@ if (vmtkPythonPackage_SUPERBUILD)
     ExternalProject_add(VMTK
         GIT_REPOSITORY "https://github.com/Mengman/vmtk.git"
         GIT_TAG "origin/v1.4.1_superbuild"
+        GIT_SUBMODULES ${VMTK_BUILD_TESTING}
         SOURCE_DIR "${CMAKE_BINARY_DIR}/VMTK"
         BINARY_DIR "${CMAKE_BINARY_DIR}/VMTK-build"
         USES_TERMINAL_DOWNLOAD 1
@@ -24,8 +35,11 @@ if (vmtkPythonPackage_SUPERBUILD)
         USES_TERMINAL_BUILD 1
         INSTALL_COMMAND ""
         CMAKE_ARGS
-            VMTK_INSTALL_BIN_DIR:PATH=${bin_dir}
-            VMTK_INSTALL_LIB_DIR:PATH=${install_dir}
+            -DVMTK_INSTALL_BIN_DIR:PATH=${bin_dir}
+            -DVMTK_INSTALL_LIB_DIR:PATH=${install_dir}
+            -DLIBRARY_OUTPUT_PATH:PATH=${install_dir}
+            -DEXECUTABLE_OUTPUT_PATH:PATH=${bin_dir}
+            -DVMTK_BUILD_TESTING:BOOL=OFF
     )
 
 
@@ -53,7 +67,7 @@ else()
         unset(CMAKE_INSTALL_COMPONENT)
         set(COMPONENT \"${component}\")
         set(CMAKE_INSTALL_DO_STRIP 1)
-        include(\"${VMTK_BINARY_DIR}/cmake_install.cmake\")
+        include(\"${VMTK_BINARY_DIR}/VMTK-Build/cmake_install.cmake\")
         unset(CMAKE_INSTALL_COMPONENT)
         ")
     endforeach()
