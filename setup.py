@@ -1,7 +1,18 @@
 import os
-from skbuild import setup, constants
-from setuptools import find_packages
+from skbuild import setup, constants, utils
 import shlex
+
+
+def manifest_hook(manifest_list):
+    new_manifest_list = []
+    for item in manifest_list:
+        if not utils.to_platform_path(item).startswith(constants.CMAKE_INSTALL_DIR()):
+            continue
+
+        new_manifest_list.append(item)
+
+    return new_manifest_list
+
 
 setup(
     name='vmtk-infervision',
@@ -14,5 +25,6 @@ setup(
     classifiers=[
         "Programming Language :: Python",
         "Programming Language :: C++",
-    ]
+    ],
+    cmake_process_manifest_hook=manifest_hook
 )
