@@ -8,7 +8,6 @@ setup(
     version='1.4.0',
     author='vmtk author',
     packages=["vmtk"],
-    scripts=scripts_paths,
     package_dir={"vmtk": "vmtk"},
     cmake_args=shlex.split(os.environ.get('VMTK_CMAKE_ARGS', '')),
     description="vmtk",
