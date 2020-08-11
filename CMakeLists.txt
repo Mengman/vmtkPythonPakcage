@@ -25,7 +25,7 @@ if (vmtkPythonPackage_SUPERBUILD)
     
     ExternalProject_add(VMTK
         GIT_REPOSITORY "https://github.com/Mengman/vmtk.git"
-        GIT_TAG "origin/v1.4.1_superbuild"
+        GIT_TAG "origin/v1.4.0-vtk-v8.1.2"
         GIT_SUBMODULES ${VMTK_GIT_SUBMODULES}
         SOURCE_DIR "${CMAKE_BINARY_DIR}/VMTK"
         BINARY_DIR "${CMAKE_BINARY_DIR}/VMTK-build"
@@ -34,11 +34,7 @@ if (vmtkPythonPackage_SUPERBUILD)
         USES_TERMINAL_CONFIGURE 1
         USES_TERMINAL_BUILD 1
         INSTALL_COMMAND ""
-        CMAKE_ARGS
-            -DVMTK_INSTALL_BIN_DIR:PATH=${bin_dir}
-            -DVMTK_INSTALL_LIB_DIR:PATH=${install_dir}
-            -DLIBRARY_OUTPUT_PATH:PATH=${install_dir}
-            -DEXECUTABLE_OUTPUT_PATH:PATH=${bin_dir}
+        CMAKE_CACHE_ARGS
             -DVMTK_BUILD_TESTING:BOOL=OFF
     )
 
@@ -59,18 +55,6 @@ if (vmtkPythonPackage_SUPERBUILD)
 
     install(SCRIPT ${CMAKE_BINARY_DIR}/${PROJECT_NAME}-build/cmake_install.cmake)
 else()
-    # set(components "PythonRuntimeLibraries;RuntimeExecutables")
-    # message(STATUS "Adding install rules for components:")
-    # foreach(component IN LISTS components)
-    #     message(STATUS "  ${component}")
-    #     install(CODE "
-    #     unset(CMAKE_INSTALL_COMPONENT)
-    #     set(COMPONENT \"${component}\")
-    #     set(CMAKE_INSTALL_DO_STRIP 1)
-    #     include(\"${VMTK_BINARY_DIR}/VMTK-Build/cmake_install.cmake\")
-    #     unset(CMAKE_INSTALL_COMPONENT)
-    #     ")
-    # endforeach()
 
     install(SCRIPT ${VMTK_BINARY_DIR}/ITK-Build/cmake_install.cmake)
     install(SCRIPT ${VMTK_BINARY_DIR}/VTK-Build/cmake_install.cmake)
