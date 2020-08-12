@@ -25,7 +25,7 @@ if (vmtkPythonPackage_SUPERBUILD)
     
     ExternalProject_add(VMTK
         GIT_REPOSITORY "https://github.com/Mengman/vmtk.git"
-        GIT_TAG "origin/v1.4.0-vtk-v8.1.2"
+        GIT_TAG "origin/master"
         GIT_SUBMODULES "${VMTK_GIT_SUBMODULES}"
         SOURCE_DIR "${CMAKE_BINARY_DIR}/VMTK"
         BINARY_DIR "${CMAKE_BINARY_DIR}/VMTK-build"
