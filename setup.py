@@ -16,7 +16,7 @@ def manifest_hook(manifest_list):
 
 setup(
     name='vmtk-infervision',
-    version='1.4.0',
+    version='latest',
     author='vmtk author',
     packages=["vmtk"],
     package_dir={"vmtk": "vmtk"},
