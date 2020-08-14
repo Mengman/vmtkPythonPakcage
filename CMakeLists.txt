@@ -136,7 +136,7 @@ if (vmtkPythonPackage_SUPERBUILD)
     set(install_dir "${CMAKE_INSTALL_PREFIX}/vmtk")
     set(bin_dir "${CMAKE_INSTALL_PREFIX}/bin")
     SET(VMTK_SOURCE ${CMAKE_BINARY_DIR}/VMTK)
-    SET(VMTK_BINARY ${CMAKE_BINARY_DIR}/VMTK-build)
+    SET(VMTK_BINARY ${CMAKE_BINARY_DIR}/VMTK-Build)
     
     ExternalProject_add(VMTK
         GIT_REPOSITORY "https://github.com/Mengman/vmtk.git"
