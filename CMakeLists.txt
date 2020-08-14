@@ -194,9 +194,10 @@ if (vmtkPythonPackage_SUPERBUILD)
     )
 
 
+    SET(PROJ_BINARY ${CMAKE_BINARY_DIR}/${PROJECT_NAME}-Build)
     ExternalProject_add(${PROJECT_NAME}
         SOURCE_DIR ${CMAKE_SOURCE_DIR}
-        BINARY_DIR ${CMAKE_BINARY_DIR}/${PROJECT_NAME}-build
+        BINARY_DIR ${PROJ_BINARY}
         CMAKE_CACHE_ARGS
             -DCMAKE_INSTALL_PREFIX:PATH=${CMAKE_INSTALL_PREFIX}
             -DvmtkPythonPackage_SUPERBUILD:BOOL=0
@@ -208,7 +209,7 @@ if (vmtkPythonPackage_SUPERBUILD)
         DEPENDS VMTK
     )
 
-    install(SCRIPT ${CMAKE_BINARY_DIR}/${PROJECT_NAME}-build/cmake_install.cmake)
+    install(SCRIPT ${PROJ_BINARY}/cmake_install.cmake)
 else()
 
     install(SCRIPT ${VMTK_BINARY_DIR}/ITK-Build/cmake_install.cmake)

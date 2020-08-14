@@ -6,7 +6,15 @@ import shlex
 def manifest_hook(manifest_list):
     new_manifest_list = []
     for item in manifest_list:
-        if not utils.to_platform_path(item).startswith(constants.CMAKE_INSTALL_DIR()):
+        file_path = utils.to_platform_path(item)
+        if not file_path.startswith(constants.CMAKE_INSTALL_DIR()):
+            continue
+        
+        # exculde "header files"
+        if "/include/" in file_path:
+            continue
+        
+        if "site-packages" in file_path:
             continue
 
         new_manifest_list.append(item)
