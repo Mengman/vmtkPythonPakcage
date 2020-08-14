@@ -17,6 +17,9 @@ def manifest_hook(manifest_list):
         if "site-packages" in file_path:
             continue
 
+        if "lib/cmake" in file_path:
+            continue
+
         new_manifest_list.append(item)
 
     return new_manifest_list
