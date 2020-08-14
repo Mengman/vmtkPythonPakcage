@@ -140,6 +140,7 @@ if (vmtkPythonPackage_SUPERBUILD)
         GIT_REPOSITORY "https://github.com/Mengman/vmtk.git"
         GIT_TAG "origin/v1.4.0-vtk-v8.1.2"
         GIT_SUBMODULES "${VMTK_GIT_SUBMODULES}"
+        GIT_SHALLOW 1
         SOURCE_DIR ${VMTK_SOURCE}
         BINARY_DIR ${VMTK_BINARY}
         USES_TERMINAL_DOWNLOAD 1
